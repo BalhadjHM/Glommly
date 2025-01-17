@@ -6,7 +6,7 @@ export default function Settings({ user, csrf_token }) {
     const [notifications, setNotifications] = useState(true)
     const [language, setLanguage] = useState('en')
 
-    const { data, setData, errors, put, isLoading } = useForm({
+    const { data, setData, errors, post, isLoading } = useForm({
         name: user.name || '',
         username: user.username || '',
         email: user.email || '',
@@ -16,7 +16,7 @@ export default function Settings({ user, csrf_token }) {
         tel: user.tel || '',
         address: user.address || '',
         industries: user.industries || '',
-        profile_photo_path: user.profile_photo_path || '',
+        profile_photo_path: null,
         darkMode: user.darkMode || false,
         notifications: user.notifications || true,
     })
@@ -24,7 +24,7 @@ export default function Settings({ user, csrf_token }) {
     // Save User Settings
     const UserSettings = (e) => {
         e.preventDefault()
-        put(`/settings/${user.id}`, {
+        post(`/settings/${user.id}`, {
             _token: csrf_token,
             ...data,
         })
@@ -123,7 +123,7 @@ export default function Settings({ user, csrf_token }) {
                         {/* Profile Tab */}
                         {activeTab === 'profile' && (
                             // User Info Form
-                            <form method='PUT' onSubmit={UserSettings}>
+                            <form onSubmit={UserSettings}>
                                 {/* CSRF token */}
                                 <input type="hidden" name="_token" value={csrf_token}/>
 
@@ -141,7 +141,7 @@ export default function Settings({ user, csrf_token }) {
                                     />
                                 </div>
                                 {errors.name && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.name}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.name}</p>
                                 )}
 
                                 {/* Username */}
@@ -158,7 +158,7 @@ export default function Settings({ user, csrf_token }) {
                                     />
                                 </div>
                                 {errors.username && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.username}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.username}</p>
                                 )}
 
                                 {/* Email */}
@@ -175,7 +175,7 @@ export default function Settings({ user, csrf_token }) {
                                     />
                                 </div>
                                 {errors.email && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.email}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.email}</p>
                                 )}
 
                                 {/* Headline */}
@@ -192,7 +192,7 @@ export default function Settings({ user, csrf_token }) {
                                     />
                                 </div>
                                 {errors.headline && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.headline}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.headline}</p>
                                 )}
 
                                 {/* Bio */}
@@ -210,7 +210,7 @@ export default function Settings({ user, csrf_token }) {
                                     ></textarea>
                                 </div>
                                 {errors.bio && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.bio}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.bio}</p>
                                 )}
 
                                 {/* Gender */}
@@ -224,13 +224,13 @@ export default function Settings({ user, csrf_token }) {
                                         onChange={(e) => setData('gender', e.target.value)}
                                         className="w-full p-2 border border-[#AFD3E2] rounded focus:outline-none focus:ring-2 focus:ring-[#19A7CE] focus:border-transparent"
                                     >
-                                        <option value="man">Man</option>
+                                        <option value="man" defaultValue>Man</option>
                                         <option value="women">Women</option>
                                         <option value="unknown">Prefer not to say</option>
                                     </select>
                                 </div>
                                 {errors.gender && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.gender}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.gender}</p>
                                 )}
 
                                 {/* Tel */}
@@ -247,7 +247,7 @@ export default function Settings({ user, csrf_token }) {
                                     />
                                 </div>
                                 {errors.tel && (
-                                    <p className="pt-2 text-red-500 text-xs italic">{errors.tel}</p>
+                                    <p className="pb-4 text-red-500 text-xs italic">{errors.tel}</p>
                                 )}
 
                                 {/* Address */}
@@ -283,6 +283,47 @@ export default function Settings({ user, csrf_token }) {
                                 {errors.industries && (
                                     <p className="pt-2 text-red-500 text-xs italic">{errors.industries}</p>
                                 )}
+
+                                {/* Profile Photo and Banner */}
+                                <div className='w-full flex flex-col md:flex-row items-start space-y-4 md:space-y-0'>
+                                    {/* Profile Photo */}
+                                    <div className='w-full md:w-1/2'>
+                                        <div className="mb-4">
+                                            <label htmlFor="profile_photo_path" className="block text-sm font-medium text-[#146C94] mb-1">
+                                                Profile Photo
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="profile_photo_path"
+                                                onChange={(e) => setData('profile_photo_path', e.target.files[0])}
+                                                accept="image/*"
+                                                className="w-full md:w-[90%] p-2 border border-[#AFD3E2] rounded focus:outline-none focus:ring-2 focus:ring-[#19A7CE] focus:border-transparent"
+                                            />
+                                        </div>
+                                        {errors.profile_photo_path && (
+                                            <p className="pb-2 text-red-500 text-xs italic">{errors.profile_photo_path}</p>
+                                        )}
+                                    </div>
+
+                                    {/* Banner */}
+                                    <div className='w-full md:w-1/2'>
+                                        <div className="mb-4">
+                                            <label htmlFor="banner" className="block text-sm font-medium text-[#146C94] mb-1">
+                                                Banner
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="banner"
+                                                //value={data.banner}
+                                                //onChange={(e) => setData('banner', e.target.value)}
+                                                className="w-full md:w-[90%] p-2 border border-[#AFD3E2] rounded focus:outline-none focus:ring-2 focus:ring-[#19A7CE] focus:border-transparent"
+                                            />
+                                        </div>
+                                        {/*{errors.banner && (*/}
+                                        {/*    <p className="pt-2 text-red-500 text-xs italic">{errors.banner}</p>*/}
+                                        {/*)}*/}
+                                    </div>
+                                </div>
 
                                 {/* Save Changes & Reset Buttons */}
                                 <div className='pt-4 flex gap-4 flex-col sm:flex-row'>

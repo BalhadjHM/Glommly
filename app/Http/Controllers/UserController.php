@@ -134,6 +134,7 @@ class UserController extends Controller
             'tel' => 'nullable|max:15|numeric',
             'address' => 'nullable|max:255|string',
             'industries' => 'nullable|max:255|string',
+            'profile_photo_path' => 'nullable|file|mimes:jpg,jpeg,png,wepb|max:4096',
         ]);
 
         // Updating the user
@@ -148,6 +149,27 @@ class UserController extends Controller
 
         // Saving the user
         $user->save();
+
+        // Handle file 'profile_photo' upload if present
+        if ($request->hasFile('profile_photo_path')) {
+            // Checking if the user has a profile photo, if so, delete it
+            if ($user->profile_photo_path) {
+                $path = explode('/', $user->profile_photo_path);
+                $filename = end($path);
+                Storage::delete('ProfilePhotos/' . $filename);
+            }
+
+            // Storing the new profile photo with a new name
+            $file = $request->file('profile_photo_path');
+            $filename = $user->username . '_profile.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('ProfilePhotos', $filename); // Store in "public/ProfilePhotos"
+            $user->profile_photo_path = 'storage/ProfilePhotos/' . $filename; // Save correct URL
+
+            dd($path, $filename, $user->profile_photo_path);
+
+            // Saving the user
+            $user->save();
+        }
 
         // Flashing a success message
         session()->flash('success', 'Profile updated successfully');

@@ -131,7 +131,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'visibility' => 'required|string|in:public,friends,private',
             'category' => 'required|string',
-            'media' => 'nullable|file|mimes:jpg,jpeg,png,mp4,mov,avi|max:4096',
+            'media' => 'nullable|file|mimes:jpg,jpeg,png,webp,mp4,mov,avi|max:4096',
         ]);
 
         // Assign the post's attributes

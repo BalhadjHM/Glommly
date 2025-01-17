@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::get('/users', [UserController::class, 'profile']);
     Route::get('/settings', [UserController::class, 'edit']);
-    Route::put('/settings/{user}', [UserController::class, 'update']);
+    Route::post('/settings/{user}', [UserController::class, 'update']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
 });
 
