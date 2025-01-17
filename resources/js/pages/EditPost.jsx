@@ -36,7 +36,7 @@ export default function EditPost({ csrf_token, auth, post }) {
     }, [flash]);
 
     return(
-        <div className="absolute top-[50%] left-0 sm:left-[13%] lg:left-[25%] w-full sm:w-3/4 lg:w-2/4 py-16">
+        <div className="absolute top-[50%] left-0 sm:left-[13%] lg:left-[25%] w-full sm:w-3/4 lg:w-2/4 py-16 bg-[#F6F1F1]">
 
             {/* Flash message */}
             {flashMessage.error && (
