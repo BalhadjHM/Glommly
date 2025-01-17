@@ -1,66 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Glommly Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Author: Balhadj ELHADJ MOUSSA
 
-## About Laravel
+## Description
+Glommly is a web-based Social Network application platform that is similar to Twitter. It allows users to sign up, log in, create posts, and manage their profiles. The application is built using modern web development technologies, including Laravel, React, Inertia.js.
+The platform provides a user-friendly and responsive interface for interacting with the application and managing user data.
+The application is built for my university project and is intended for educational purposes, demonstrating the use of various web development tools and technologies in developing
+Social Network applications. the app is open-source and can be used as a starting point for building similar web applications. we thank you for your interest in our project and we welcome any feedback or contributions to the project.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tools Used
+### PHP
+- PHP is a widely-used open-source scripting language that is especially suited for web development and can be embedded into HTML.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Laravel
+- Laravel is a PHP framework that provides an elegant syntax and a robust set of tools for building web applications, including routing, authentication, and database management.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### JavaScript
+- JavaScript is essential for creating interactive web pages. It allows for dynamic content updates without reloading the page.
 
-## Learning Laravel
+### React
+- React is a JavaScript library for building user interfaces. It allows for the creation of reusable UI components and efficient rendering of dynamic data.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Inertia.js
+- Inertia.js is a library that allows for building single-page applications using server-side routing and controllers. It provides the benefits of a modern JavaScript framework without the need for an API.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Tailwind CSS
+- Tailwind CSS is a utility-first CSS framework that provides a set of pre-built classes for styling web applications. It allows for rapid development and customization of the user interface.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### MySQL
+- MySQL is an open-source relational database management system that is widely used for storing and managing data in web applications.
 
-## Laravel Sponsors
+### Composer
+- Composer is a dependency manager for PHP, which allows for easy management of project dependencies.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### NPM
+- NPM is a package manager for JavaScript, which helps in managing project dependencies and running scripts.
 
-### Premium Partners
+## Cloning and Installing
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/BalhadjHM/your-repo-name.git
+    cd your-repo-name
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. **Install PHP dependencies**:
+    ```sh
+    composer install
+    ```
 
-## Contributing
+3. **Install JavaScript dependencies**:
+    ```sh
+    npm install
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Configuring the Workspace
 
-## Code of Conduct
+1. **Generate the application key**:
+    ```sh
+    php artisan key:generate
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. **Run database migrations**:
+    ```sh
+    php artisan migrate
+    ```
 
-## Security Vulnerabilities
+3. **Build the front-end assets**:
+    ```sh
+    npm run dev
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Using the Application
+1. **Start the development server**:
+    ```sh
+    php artisan serve
+    ```
+   The application will be accessible at `http://localhost:8000`.
 
-## License
+2. **Access the application**:
+    - **Sign Up**: Navigate to `/signup` to create a new account.
+    - **Log In**: Navigate to `/login` to log in to your account.
+    - **Create Posts**: Once logged in, navigate to `/posts/create` to create a new post.
+    - **Manage Profile**: Navigate to `/settings` to update your profile information.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. **Log Out**: Navigate to `/logout` to log out of your account.
+
+## Additional Notes
+- Ensure that your local development environment meets the necessary requirements for running a Laravel application, including PHP, Composer, Node.js, and NPM.
+- For production deployment, consider using a web server like Nginx or Apache and a database server like MySQL or PostgreSQL.
